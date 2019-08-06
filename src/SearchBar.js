@@ -1,15 +1,15 @@
 import React from 'react'
 
 
-function SearchBar(){
+function SearchBar(props){
 
         return(
             <div className="ui two item menu">
-                <h4 class="item">Natural Healing Directory</h4>
+                <h4 className="item">Natural Healing Directory</h4>
 
                 <div className="ui large icon input">
-                    <i class="search icon"></i>
-                    <input name="search" type="text" placeholder="Search..."/>
+                    <i className="search icon"></i>
+                    <input onChange={props.handleSearch} name="search" type="text" placeholder="Search..."/>
                 </div>
             </div>
         )
