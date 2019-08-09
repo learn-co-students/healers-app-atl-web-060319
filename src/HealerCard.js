@@ -3,22 +3,6 @@ import React from 'react'
 
 class HealerCard extends React.Component{
 
-    componentDidUpdate(){
-        console.log(" Healer Card component did update ran!")
-    
-      }
-
-      componentDidMount(){
-        console.log("Healer Card component did mount ran!")
-
-      }
-
-      componentWillMount(){
-
-        console.log("Healer Card component will  unmount ran!")
-
-      }
-
     render(){
         return(
             <div className="ui card">

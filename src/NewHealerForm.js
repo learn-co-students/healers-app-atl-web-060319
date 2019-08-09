@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 class NewHealerForm extends React.Component{
 
@@ -37,7 +38,7 @@ class NewHealerForm extends React.Component{
                     <input onChange = {this.handleInput} type="text" name="image" placeholder={this.state.image}/>
                     </div>
                 </div>
-                <button onClick={     (e)=> { this.props.addNewHealer(this.state) }    }   className="ui small button" type="submit">Submit</button>
+                <button onClick={     (e)=> { e.preventDefault(); this.props.addNewHealer(this.state) }    }   className="ui small button" type="submit">Submit</button>
                 </form>
             </div>
 
@@ -49,4 +50,12 @@ class NewHealerForm extends React.Component{
 
 }
 
-export default NewHealerForm;
+const mapDispatchToProps = dispatch =>{
+
+    return {addNewHealer: (healer)=> dispatch({type:'ADD_HEALER', value:healer}) }
+
+
+}
+const ConnectedNewHealerForm = connect(()=>{}, mapDispatchToProps)(NewHealerForm)
+
+export default ConnectedNewHealerForm;

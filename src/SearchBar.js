@@ -1,26 +1,34 @@
 import React from 'react'
-import { tsPropertySignature } from '@babel/types';
-
+import { connect } from 'react-redux';
 
 class SearchBar extends React.Component{
 
-    componentDidUpdate(){
-
-        console.log("search bar updated? ")
-    }
     render(){
         return(
             <div className="ui two item menu">
-                <h4 class="item">Natural Healing Directory</h4>
+                <h4 className="item">Natural Healing Directory</h4>
 
                 <div className="ui large icon input">
-                    <i class="search icon"></i>
-                    <input onChange = {this.props.handleSearch }name="search" type="text" placeholder="Search..."/>
+                    <i className="search icon"></i>
+                    <input onChange = {(e)=> this.props.updateSearch(e.target.value) }name="search" type="text" placeholder="Search..."/>
                 </div>
             </div>
         )
     }
 }
 
+//state argument is equivalent to store.getState()
+const mapStateToProps = state  =>{
 
-export default SearchBar;
+    return {searchTerm: state.searchTerm}
+}
+
+//dispatch argument is equivalent to store.dispatch()
+const mapDispatchToProps = dispatch => {
+
+    return {updateSearch: (search)=> dispatch({type: 'CHANGE_SEARCH', value: search})}
+}
+
+const ConnectedSearchBar = connect(mapStateToProps,mapDispatchToProps)(SearchBar)
+
+export default ConnectedSearchBar;
